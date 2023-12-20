@@ -1,0 +1,14 @@
+textarea {
+    resize: none;
+    height: 1.6em;
+}
+
+#container{
+    height: 100%;
+    width: 100%;
+    text-align: center;
+}
+
+#container > button {
+    margin-top: auto;
+}

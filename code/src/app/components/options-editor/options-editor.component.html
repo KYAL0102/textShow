@@ -1,0 +1,13 @@
+<div id="container">
+  <div *ngFor="let item of list; let i = index">
+    <textarea #textAreaElem (input)="onInputChange(textAreaElem.value, i)">{{
+      list[i]
+    }}</textarea>
+    <button (click)="removeItem(i)">Remove</button>
+  </div>
+
+  <button (click)="addItem()" [disabled]="isCurOpListSelected()">
+    Add Item
+  </button>
+  <button (click)="saveList()" [disabled]="isCurOpListSelected()">Save</button>
+</div>
