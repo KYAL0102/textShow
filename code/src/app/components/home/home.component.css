@@ -1,21 +1,21 @@
 .grid-container{
     display: grid;
-    gap: 10px;
     grid-template-columns: fit-content(50%) auto fit-content(50%);
     grid-template-rows: 50% auto;
     height: 100vh;
 }
 
 .grid-item{
-    padding: 5px;
-    border: 1px solid black;
+    padding: 10px;
     border-collapse: collapse;
 }
 
 #sidebar{
+
     min-width: 2vw;
     grid-column: 1;
     grid-row: 1 /span 2;
+    background-color: #3AAFA9;
 }
 
 #textfield{
@@ -23,6 +23,8 @@
     grid-row: 1 /span 2;
     max-height: 100vh;
     overflow-y: auto;
+    background-color: #DEF2F1;
+    color: #2B7A78;
 }
 
 #optionsEditor{
@@ -31,4 +33,5 @@
     overflow: auto;
     grid-column: 3;
     grid-row: 1;
+    background-color: #3AAFA9;
 }

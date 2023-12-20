@@ -1,4 +1,5 @@
 /* You can add global styles to this file, and also import other style files */
+@import url('https://fonts.googleapis.com/css2?family=Quicksand&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Roboto+Mono&display=swap');
 
 body{
@@ -7,4 +8,29 @@ body{
 
 * {
     font-family: 'Roboto Mono', monospace;
+}
+
+button {
+    font-family: 'Quicksand', sans-serif;
+    border: none;
+    outline: none;
+    background-color: #17252A;
+    color: #DEF2F1;
+    border-radius: 5px;
+    padding: 10px;
+}
+
+button:hover:not(.disabled-button){
+    transition-duration: 0.5s;
+    cursor: pointer;
+    background-color: #203842;
+}
+
+.disabled-button {
+    background-color: rgba(23, 37, 42, 0.5);
+}
+
+.remove-button{
+    padding: 5px;
+    background-color: darkred;
 }

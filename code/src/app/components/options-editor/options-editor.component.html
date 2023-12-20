@@ -1,13 +1,23 @@
 <div id="container">
-  <div *ngFor="let item of list; let i = index">
+  <div class="optionLine" *ngFor="let item of list; let i = index">
     <textarea #textAreaElem (input)="onInputChange(textAreaElem.value, i)">{{
       list[i]
     }}</textarea>
-    <button (click)="removeItem(i)">Remove</button>
+    <button class="remove-button" (click)="removeItem(i)">Remove</button>
   </div>
 
-  <button (click)="addItem()" [disabled]="isCurOpListSelected()">
+  <button
+    (click)="addItem()"
+    [disabled]="isCurOpListSelected()"
+    [ngClass]="{ 'disabled-button': isCurOpListSelected() }"
+  >
     Add Item
   </button>
-  <button (click)="saveList()" [disabled]="isCurOpListSelected()">Save</button>
+  <button
+    (click)="saveList()"
+    [disabled]="isCurOpListSelected()"
+    [ngClass]="{ 'disabled-button': isCurOpListSelected() }"
+  >
+    Save
+  </button>
 </div>

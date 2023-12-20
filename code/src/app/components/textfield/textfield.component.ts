@@ -13,6 +13,9 @@ export class TextfieldComponent {
   constructor(private service: OptionService, private renderer: Renderer2) {}
 
   ngAfterViewInit() {
+    if(this.text){
+      this.text.nativeElement.focus();
+    }
     this.observeDivChanges();
   }
 

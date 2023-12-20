@@ -1,5 +1,20 @@
 <div>
-  <button (mousedown)="preventBlur($event)" (click)="onBtnClicked()">
-    insert
-  </button>
+  <ul>
+    <li title="add Option">
+      <img
+        src="assets/optionen.png"
+        (mousedown)="preventBlur($event)"
+        (click)="onBtnClicked()"
+      />
+    </li>
+    <li id="line">
+      <img src="assets/linie.png" />
+    </li>
+    <li title="Safe your story">
+      <img src="assets/speichern.png" />
+    </li>
+    <li title="Run the game">
+      <img src="assets/wiedergabetaste.png" />
+    </li>
+  </ul>
 </div>

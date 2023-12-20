@@ -12,3 +12,9 @@ textarea {
 #container > button {
     margin-top: auto;
 }
+
+.optionLine{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
