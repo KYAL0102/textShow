@@ -10,6 +10,10 @@ export class SidebarComponent {
 
   constructor(private service: OptionService) {}
 
+  execute() {
+    this.service.execute();
+  }
+
   onBtnClicked(){
     if (!this.service.isFocused) {
       return;

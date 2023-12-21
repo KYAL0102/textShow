@@ -39,7 +39,6 @@ export class OptionsEditorComponent{
     for(const index in this.changes){
       this.list[index] = this.changes[index];
     }
-    console.log(this.list);
     this.service.setOptions(this.service.curOpList_Index, this.list);
     this.changes = {};
   }

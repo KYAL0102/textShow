@@ -8,6 +8,7 @@ import { SidebarComponent } from './components/sidebar/sidebar.component';
 import { HomeComponent } from './components/home/home.component';
 import { FormsModule } from '@angular/forms';
 import { OptionsEditorComponent } from './components/options-editor/options-editor.component';
+import { GameComponent } from './components/game/game.component';
 
 @NgModule({
   declarations: [
@@ -15,7 +16,8 @@ import { OptionsEditorComponent } from './components/options-editor/options-edit
     TextfieldComponent,
     SidebarComponent,
     HomeComponent,
-    OptionsEditorComponent
+    OptionsEditorComponent,
+    GameComponent
   ],
   imports: [
     BrowserModule,

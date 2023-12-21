@@ -7,8 +7,8 @@ import { OptionService } from 'src/app/services/option-service.service';
   styleUrls: ['./textfield.component.css']
 })
 export class TextfieldComponent {
+
   @ViewChild('text', {read: ElementRef}) text: ElementRef | undefined;
-  
 
   constructor(private service: OptionService, private renderer: Renderer2) {}
 
@@ -17,6 +17,35 @@ export class TextfieldComponent {
       this.text.nativeElement.focus();
     }
     this.observeDivChanges();
+    this.service.wasExecuted$.subscribe((wasExecuted) => {
+      if(wasExecuted) { 
+        const result: string = this.extractText(this.text?.nativeElement);
+        this.service.setStoryText(result);
+      }
+    });
+  }
+
+  extractText(element?: HTMLElement):string{
+    let result = "";
+    if(!element) return result;
+
+    Array.from(element.childNodes).forEach(child => {
+      if(child.nodeType === Node.TEXT_NODE){
+        result += child.textContent;
+      } else if(child.nodeType === Node.ELEMENT_NODE){
+        const tagName = (child as HTMLElement).tagName.toLowerCase();
+        if(tagName === 'button'){
+          const name = (child as HTMLElement).getAttribute('name');
+          if(name){
+            result += `{[${name}]}`;
+          }
+        }else{
+          result += this.extractText(child as HTMLElement);
+        }
+      }
+    });
+
+    return result;
   }
 
   observeDivChanges() {

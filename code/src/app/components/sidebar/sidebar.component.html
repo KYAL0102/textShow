@@ -1,11 +1,11 @@
 <div>
   <ul>
-    <li title="add Option">
-      <img
-        src="assets/optionen.png"
-        (mousedown)="preventBlur($event)"
-        (click)="onBtnClicked()"
-      />
+    <li
+      title="add Option"
+      (mousedown)="preventBlur($event)"
+      (click)="onBtnClicked()"
+    >
+      <img src="assets/optionen.png" />
     </li>
     <li id="line">
       <img src="assets/linie.png" />
@@ -13,7 +13,11 @@
     <li title="Safe your story">
       <img src="assets/speichern.png" />
     </li>
-    <li title="Run the game">
+    <li
+      title="Run the game"
+      (mousedown)="preventBlur($event)"
+      (click)="execute()"
+    >
       <img src="assets/wiedergabetaste.png" />
     </li>
   </ul>
