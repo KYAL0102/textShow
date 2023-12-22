@@ -1,5 +1,7 @@
-import { Component, ElementRef, HostListener, Renderer2, ViewChild } from '@angular/core';
+import { Component, ElementRef, HostListener, ViewChild } from '@angular/core';
+import { CoordinatorService } from 'src/app/services/coordinator.service';
 import { OptionService } from 'src/app/services/option-service.service';
+import { StndMethodService } from 'src/app/services/stnd-method.service';
 
 @Component({
   selector: 'app-textfield',
@@ -10,42 +12,31 @@ export class TextfieldComponent {
 
   @ViewChild('text', {read: ElementRef}) text: ElementRef | undefined;
 
-  constructor(private service: OptionService, private renderer: Renderer2) {}
+  constructor(private service: OptionService, private methodService: StndMethodService, private coordinator: CoordinatorService) {}
 
   ngAfterViewInit() {
     if(this.text){
+      const innerHtml = localStorage.getItem("textHtmlCode");
+      if(innerHtml){
+        this.text.nativeElement.innerHTML = innerHtml;
+      }
       this.text.nativeElement.focus();
     }
     this.observeDivChanges();
-    this.service.wasExecuted$.subscribe((wasExecuted) => {
+    this.coordinator.wasExecuted$.subscribe((wasExecuted) => {
       if(wasExecuted) { 
-        const result: string = this.extractText(this.text?.nativeElement);
-        this.service.setStoryText(result);
+        const result: string = this.methodService.extractText(this.text?.nativeElement);
+        localStorage.setItem("textHtmlCode", this.text?.nativeElement.innerHTML);
+        this.coordinator.setStoryText(result);
       }
     });
-  }
-
-  extractText(element?: HTMLElement):string{
-    let result = "";
-    if(!element) return result;
-
-    Array.from(element.childNodes).forEach(child => {
-      if(child.nodeType === Node.TEXT_NODE){
-        result += child.textContent;
-      } else if(child.nodeType === Node.ELEMENT_NODE){
-        const tagName = (child as HTMLElement).tagName.toLowerCase();
-        if(tagName === 'button'){
-          const name = (child as HTMLElement).getAttribute('name');
-          if(name){
-            result += `;${name};`;
-          }
-        }else{
-          result += this.extractText(child as HTMLElement);
+    this.coordinator.textClear$.subscribe((value) => {
+      if(value){
+        if(this.text){
+          this.text.nativeElement.innerHTML = "&nbsp;";
         }
       }
     });
-
-    return result;
   }
 
   observeDivChanges() {
@@ -72,11 +63,11 @@ export class TextfieldComponent {
   }
 
   onFocus(){
-    this.service.isFocused = true;
+    this.coordinator.isFocused = true;
   }
 
   onBlur(){
-    this.service.isFocused = false;
+    this.coordinator.isFocused = false;
   }
 
   @HostListener('contextmenu')

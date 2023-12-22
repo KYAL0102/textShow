@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { CoordinatorService } from 'src/app/services/coordinator.service';
 import { OptionService } from 'src/app/services/option-service.service';
 
 @Component({
@@ -7,15 +8,14 @@ import { OptionService } from 'src/app/services/option-service.service';
   styleUrls: ['./sidebar.component.css']
 })
 export class SidebarComponent {
-
-  constructor(private service: OptionService) {}
+  constructor(private service: OptionService, private coordinator: CoordinatorService) {}
 
   execute() {
-    this.service.execute();
+    this.coordinator.execute(this.service.list);
   }
 
   onBtnClicked(){
-    if (!this.service.isFocused) {
+    if (!this.coordinator.isFocused) {
       return;
     }
 
@@ -38,6 +38,11 @@ export class SidebarComponent {
 
     range.insertNode(newElement);
     range.collapse();
+  }
+
+  clearText() {
+    localStorage.setItem("textHtmlCode", "");
+    this.coordinator.setTextClear(true);
   }
 
   preventBlur(event: MouseEvent) {

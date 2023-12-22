@@ -2,5 +2,7 @@
   <h2>Choose a word!</h2>
 </div>
 <div id="btnContainer">
-  <button *ngFor="let item of curOptions; let i = index">{{ item }}</button>
+  <div *ngFor="let item of curOptions; let i = index">
+    <button (click)="nextMap(item)">{{ item }}</button>
+  </div>
 </div>

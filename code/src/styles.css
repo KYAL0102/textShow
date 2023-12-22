@@ -2,6 +2,14 @@
 @import url('https://fonts.googleapis.com/css2?family=Quicksand&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Roboto+Mono&display=swap');
 
+:root{
+    --deepTeal: #17252A;
+    --midnightBlue: #203842;
+    --darkAqua: #2B7A78;
+    --darkCyan: #3AAFA9;
+    --paleAqua: #DEF2F1;
+}
+
 body{
     margin: 0;
 }
@@ -14,8 +22,8 @@ button {
     font-family: 'Quicksand', sans-serif;
     border: none;
     outline: none;
-    background-color: #17252A;
-    color: #DEF2F1;
+    background-color: var(--deepTeal);
+    color: var(--paleAqua);
     border-radius: 5px;
     padding: 10px;
 }

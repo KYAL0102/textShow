@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { CoordinatorService } from 'src/app/services/coordinator.service';
 import { OptionService } from 'src/app/services/option-service.service';
 
 @Component({
@@ -10,8 +11,8 @@ export class OptionsEditorComponent{
   list: string[] = [];
   changes: {[key: number]: string} = {}
 
-  constructor(private service: OptionService){
-    this.service.options$.subscribe((options: string[]) => {
+  constructor(private service: OptionService, private coordinator: CoordinatorService){
+    this.coordinator.options$.subscribe((options: string[]) => {
       this.list = [...options];
     });
   }
@@ -21,7 +22,7 @@ export class OptionsEditorComponent{
   }
 
   isCurOpListSelected(): boolean {
-    return this.service.curOpList_Index == -1;
+    return this.coordinator.curOpList_Index == -1;
   }
 
   addItem() {
@@ -39,7 +40,7 @@ export class OptionsEditorComponent{
     for(const index in this.changes){
       this.list[index] = this.changes[index];
     }
-    this.service.setOptions(this.service.curOpList_Index, this.list);
+    this.service.setOptions(this.coordinator.curOpList_Index, this.list);
     this.changes = {};
   }
     

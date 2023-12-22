@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { OptionService } from 'src/app/services/option-service.service';
+import { StndMethodService } from 'src/app/services/stnd-method.service';
 
 @Component({
   selector: 'app-game',
@@ -8,36 +9,61 @@ import { OptionService } from 'src/app/services/option-service.service';
   styleUrls: ['./game.component.css']
 })
 export class GameComponent implements OnInit{
-  curOptions_index = 0;
+  curKey_Index:number = 0;
   curOptions!: string[];
 
   story!: string;
+  chosenWords: Map<number, string> = new Map<number, string>
+  private keys!: number[];
   optionsList!: Map<number, string[]>;
 
-  constructor() {}
+  constructor(private methodService: StndMethodService) {}
 
   ngOnInit(): void {
     const text = localStorage.getItem("text");
     const list = localStorage.getItem("list");
     if(text && list){
       this.story = text;
-      this.optionsList = this.text2Map(list);
-      const cur = this.optionsList.get(this.curOptions_index);
+      this.optionsList = this.methodService.text2Map(list);
+      this.keys = [...this.optionsList.keys()].sort((a,b) => a - b);
+      const cur = this.optionsList.get(this.keys[this.curKey_Index]);
       if(cur){
         this.curOptions = cur;
       }
     }
   }
 
-  text2Map(arg: string): Map<number, string[]>{
-    let map = new Map<number, string[]>();
-    let arr: string[] = arg.split(';');
+  nextMap(chosenWord: string){
+    this.chosenWords.set(this.keys[this.curKey_Index], chosenWord);
 
-    for(let line of arr){
-      const data = line.split(',');
-      const key = Number.parseInt(data[0]);
-      map.set(key, data.slice(1));
+    this.curKey_Index++;
+    if(this.curKey_Index >= this.keys.length){
+      return;
     }
-    return map;
+    const nextOptions = this.optionsList.get(this.keys[this.curKey_Index]);
+    if(nextOptions){
+      this.curOptions = nextOptions;
+    }else{
+      const result = this.smashMapAndText(this.story, this.chosenWords);
+    }
+  }
+
+  smashMapAndText(story: string, chosenWords: Map<number, string>):string{
+    let finalText: string = "";
+    const splitStory: string[] = story.split(';');
+    for(let part of splitStory){
+      const insertWort_Index = Number.parseInt(part);
+      if(insertWort_Index){
+        const word = this.chosenWords.get(insertWort_Index);
+        if(word){
+          finalText += `${word}`;
+        }
+      }else{
+        finalText += `${part}`;
+      }
+
+    }
+    return finalText;
   }
 }
+

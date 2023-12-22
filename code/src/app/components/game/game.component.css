@@ -1,5 +1,8 @@
+
+
 .centerContainer{
     text-align: center;
+    color: var(--darkAqua);
 }
 
 #btnContainer {
@@ -11,16 +14,13 @@
     align-content: center;
 }
 
-.button-container button:nth-child(3n + 1) {
-    grid-column: span 3; /* Span across three columns */
-}
-
-#btnContainer > button{
+#btnContainer > div > button{
+    width: 100%;
     background-color: #2B7A78;
     color: #DEF2F1;
     font-size: 2em;
 }
 
-#btnContainer > button:hover{
+#btnContainer > div > button:hover{
     background-color: #265e5c;
 }
