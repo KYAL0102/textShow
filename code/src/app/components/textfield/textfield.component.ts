@@ -37,7 +37,7 @@ export class TextfieldComponent {
         if(tagName === 'button'){
           const name = (child as HTMLElement).getAttribute('name');
           if(name){
-            result += `{[${name}]}`;
+            result += `;${name};`;
           }
         }else{
           result += this.extractText(child as HTMLElement);

@@ -69,16 +69,24 @@ export class OptionService{
     this.behaviorWasExecuted.next(false);
     setTimeout(() => {
       const arr = Array.from(this.list);
+      localStorage.setItem('list', this.arr2String(arr));
+      localStorage.setItem('text', this.storyText);
       this.router.navigate(
-        ['/game'],
-        {
-          queryParams: {
-            text: this.storyText,
-            list: arr
-          },
-          queryParamsHandling: 'merge'
-        });
+        ['/game']);
     }, 100);
+  }
+
+  arr2String(arr:[number, string[]][]):string{
+    let result = "";
+    for(let x = 0; x < arr.length; x++){
+      if(x < arr.length-1){
+        result += `${arr[x].toString()};`;
+      }else{
+        result += `${arr[x].toString()}`;
+      }
+      
+    }
+    return result;
   }
 
   setStoryText(text: string):void{

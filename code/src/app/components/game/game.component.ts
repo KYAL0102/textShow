@@ -14,28 +14,24 @@ export class GameComponent implements OnInit{
   story!: string;
   optionsList!: Map<number, string[]>;
 
-  constructor(private route: ActivatedRoute) {}
+  constructor() {}
 
   ngOnInit(): void {
-    this.route.queryParams
-      .subscribe(params => {
-        this.story = params['text'];
-        this.optionsList = this.arr2Map(params['list']);
-        const _curOptions = this.optionsList.get(this.curOptions_index);
-        if(_curOptions !== undefined) this.curOptions = _curOptions;
+    const text = localStorage.getItem("text");
+    const list = localStorage.getItem("list");
+    if(text && list){
+      this.story = text;
+      this.optionsList = this.text2Map(list);
+      const cur = this.optionsList.get(this.curOptions_index);
+      if(cur){
+        this.curOptions = cur;
       }
-    );
+    }
   }
 
-  arr2Map(arg: string | string[]): Map<number, string[]>{
+  text2Map(arg: string): Map<number, string[]>{
     let map = new Map<number, string[]>();
-    let arr: string[] = []
-
-    if(!Array.isArray(arg)) {
-      arr.push(arg);
-    }else{
-      arr = arg as string[];
-    }
+    let arr: string[] = arg.split(';');
 
     for(let line of arr){
       const data = line.split(',');

@@ -1,3 +1,6 @@
-<div *ngFor="let item of curOptions; let i = index">
-  <button>{{ item }}</button>
+<div class="centerContainer">
+  <h2>Choose a word!</h2>
+</div>
+<div id="btnContainer">
+  <button *ngFor="let item of curOptions; let i = index">{{ item }}</button>
 </div>

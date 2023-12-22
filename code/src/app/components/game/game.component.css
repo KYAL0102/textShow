@@ -1,0 +1,26 @@
+.centerContainer{
+    text-align: center;
+}
+
+#btnContainer {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(100px, 1fr)); /* Adjust the size and number of items */
+    gap: 10px;
+    padding: 10px;
+    justify-content: space-around;
+    align-content: center;
+}
+
+.button-container button:nth-child(3n + 1) {
+    grid-column: span 3; /* Span across three columns */
+}
+
+#btnContainer > button{
+    background-color: #2B7A78;
+    color: #DEF2F1;
+    font-size: 2em;
+}
+
+#btnContainer > button:hover{
+    background-color: #265e5c;
+}
