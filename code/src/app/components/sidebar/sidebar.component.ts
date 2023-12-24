@@ -32,9 +32,6 @@ export class SidebarComponent {
     newElement.contentEditable = "false";
     newElement.style.userSelect = "none";
     newElement.style.outline = "none";
-    newElement.onclick = () => {
-      this.service.setCurrentOptions(id);
-    }
 
     range.insertNode(newElement);
     range.collapse();

@@ -49,6 +49,8 @@ export class CoordinatorService implements OnInit{
 
   setTextClear(value: boolean){
     this.behaviorTextClear.next(value);
+    localStorage.setItem("list", "");
+    localStorage.setItem("text", "");
   }
 
   execute(list: Map<number, string[]>){
@@ -62,8 +64,11 @@ export class CoordinatorService implements OnInit{
       const arr = Array.from(list);
       localStorage.setItem('list', this.methodService.arr2String(arr));
       localStorage.setItem('text', this.storyText);
-      this.router.navigate(
-        ['/game']);
+      this.navigateTo('/game');
     }, 100);
+  }
+
+  navigateTo(route: string):void{
+    this.router.navigate([route]);
   }
 }

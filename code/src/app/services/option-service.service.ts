@@ -1,18 +1,33 @@
-import { Injectable, OnInit } from '@angular/core';
+import { Injectable, OnDestroy, OnInit } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { Router } from '@angular/router';
 import { CoordinatorService } from './coordinator.service';
+import { StndMethodService } from './stnd-method.service';
 
 @Injectable({
   providedIn: 'root'
 })
-export class OptionService{
+export class OptionService implements OnDestroy, OnInit{
 
   public static nextID = 0;
   list: Map<number, string[]> = new Map();
 
-  constructor(private coordinator: CoordinatorService){
+  constructor(private coordinator: CoordinatorService, private methodService: StndMethodService){
     
+  }
+
+  ngOnInit(): void {
+    const receivedText = localStorage.getItem("optionsList");
+    if(receivedText){
+      console.log(receivedText);
+      this.list = this.methodService.text2Map(receivedText);
+    }
+  }
+
+  ngOnDestroy(): void {
+    const arr = [...this.list];
+    const text = this.methodService.arr2String(arr);
+    localStorage.setItem("optionsList", text);
   }
 
   setCurrentOptions(index: number){

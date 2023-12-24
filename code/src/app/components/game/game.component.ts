@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { CoordinatorService } from 'src/app/services/coordinator.service';
 import { OptionService } from 'src/app/services/option-service.service';
 import { StndMethodService } from 'src/app/services/stnd-method.service';
 
@@ -17,7 +18,7 @@ export class GameComponent implements OnInit{
   private keys!: number[];
   optionsList!: Map<number, string[]>;
 
-  constructor(private methodService: StndMethodService) {}
+  constructor(private methodService: StndMethodService, private coordinator: CoordinatorService) {}
 
   ngOnInit(): void {
     const text = localStorage.getItem("text");
@@ -38,13 +39,14 @@ export class GameComponent implements OnInit{
 
     this.curKey_Index++;
     if(this.curKey_Index >= this.keys.length){
+      const result = this.smashMapAndText(this.story, this.chosenWords);
+      localStorage.setItem("finalText", result);
+      this.coordinator.navigateTo('/finalText');
       return;
     }
     const nextOptions = this.optionsList.get(this.keys[this.curKey_Index]);
     if(nextOptions){
       this.curOptions = nextOptions;
-    }else{
-      const result = this.smashMapAndText(this.story, this.chosenWords);
     }
   }
 
@@ -52,8 +54,8 @@ export class GameComponent implements OnInit{
     let finalText: string = "";
     const splitStory: string[] = story.split(';');
     for(let part of splitStory){
-      const insertWort_Index = Number.parseInt(part);
-      if(insertWort_Index){
+      if(!isNaN(Number.parseInt(part))){
+        const insertWort_Index = Number.parseInt(part);
         const word = this.chosenWords.get(insertWort_Index);
         if(word){
           finalText += `${word}`;

@@ -9,6 +9,7 @@ import { HomeComponent } from './components/home/home.component';
 import { FormsModule } from '@angular/forms';
 import { OptionsEditorComponent } from './components/options-editor/options-editor.component';
 import { GameComponent } from './components/game/game.component';
+import { FinalTextComponent } from './components/final-text/final-text.component';
 
 @NgModule({
   declarations: [
@@ -17,7 +18,8 @@ import { GameComponent } from './components/game/game.component';
     SidebarComponent,
     HomeComponent,
     OptionsEditorComponent,
-    GameComponent
+    GameComponent,
+    FinalTextComponent
   ],
   imports: [
     BrowserModule,

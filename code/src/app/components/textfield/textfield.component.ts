@@ -15,6 +15,8 @@ export class TextfieldComponent {
   constructor(private service: OptionService, private methodService: StndMethodService, private coordinator: CoordinatorService) {}
 
   ngAfterViewInit() {
+    this.observeDivChanges();
+
     if(this.text){
       const innerHtml = localStorage.getItem("textHtmlCode");
       if(innerHtml){
@@ -22,7 +24,7 @@ export class TextfieldComponent {
       }
       this.text.nativeElement.focus();
     }
-    this.observeDivChanges();
+
     this.coordinator.wasExecuted$.subscribe((wasExecuted) => {
       if(wasExecuted) { 
         const result: string = this.methodService.extractText(this.text?.nativeElement);
@@ -30,6 +32,7 @@ export class TextfieldComponent {
         this.coordinator.setStoryText(result);
       }
     });
+
     this.coordinator.textClear$.subscribe((value) => {
       if(value){
         if(this.text){
@@ -60,6 +63,16 @@ export class TextfieldComponent {
     const config = { childList: true, subtree: true };
 
     observer.observe(editableDiv, config);
+  }
+
+  buttonClickHandler(event: Event){
+    const target = event.target as HTMLElement;
+    if(target.tagName === 'BUTTON'){
+      const btn: HTMLButtonElement = target as HTMLButtonElement;
+      if(!isNaN(Number.parseInt(btn.name))){
+        this.service.setCurrentOptions(Number.parseInt(btn.name));
+      }
+    }
   }
 
   onFocus(){
