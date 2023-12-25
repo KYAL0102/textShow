@@ -1,0 +1,31 @@
+.container{
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--paleAqua);
+    overflow: auto;
+}
+
+#textContainer{
+    padding: 15px;
+    border-radius: 10px;
+    min-height: 90%;
+    height: fit-content;
+    width: 50%;
+    background-color: white;
+    font-size: 1.5em;
+}
+
+.btnContainer{
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    float: right;
+    padding: 20px;
+}
+
+.btnContainer button {
+    font-size: 1.5em;
+}

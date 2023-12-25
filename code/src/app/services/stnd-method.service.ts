@@ -7,6 +7,13 @@ export class StndMethodService {
 
   constructor() { }
 
+  /**
+   * Transforms a string object into a Map<number, string[]>.<br/>
+   * The lines of the parameter __arg__ need to be seperated by ' ; ', and then with ' , '. <br/>
+   * The first parameter of each line has to be a 0.
+   * @param arg 
+   * @returns 
+   */
   text2Map(arg: string): Map<number, string[]>{
     let map = new Map<number, string[]>();
     let arr: string[] = arg.split(';');
@@ -42,6 +49,11 @@ export class StndMethodService {
     return result;
   }
 
+  /**
+   * Transforms a string array into a single string seperated with semicolons.
+   * @param arr
+   * @returns 
+   */
   arr2String(arr:[number, string[]][]):string{
     let result = "";
     for(let x = 0; x < arr.length; x++){

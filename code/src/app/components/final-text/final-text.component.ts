@@ -1,4 +1,5 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
+import { CoordinatorService } from 'src/app/services/coordinator.service';
 
 @Component({
   selector: 'app-final-text',
@@ -6,6 +7,9 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
   styleUrls: ['./final-text.component.css']
 })
 export class FinalTextComponent implements OnInit, OnDestroy{
+
+  constructor(private coordinator: CoordinatorService) {}
+
   ngOnDestroy(): void {
     localStorage.setItem("finalText", "");
   }
@@ -16,4 +20,7 @@ export class FinalTextComponent implements OnInit, OnDestroy{
     if(receivedText) this.text = receivedText;
   }
 
+  returnToHome() {
+    this.coordinator.navigateTo('/home');
+  }
 }
