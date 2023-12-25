@@ -12,7 +12,7 @@ export class OptionsEditorComponent{
   changes: {[key: number]: string} = {}
 
   constructor(private service: OptionService, private coordinator: CoordinatorService){
-    this.coordinator.options$.subscribe((options: string[]) => {
+    this.service.options$.subscribe((options: string[]) => {
       this.list = [...options];
     });
   }

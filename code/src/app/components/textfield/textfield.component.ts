@@ -70,7 +70,7 @@ export class TextfieldComponent {
     if(target.tagName === 'BUTTON'){
       const btn: HTMLButtonElement = target as HTMLButtonElement;
       if(!isNaN(Number.parseInt(btn.name))){
-        this.service.setCurrentOptions(Number.parseInt(btn.name));
+        this.service.renderSelectedOptions(Number.parseInt(btn.name));
       }
     }
   }

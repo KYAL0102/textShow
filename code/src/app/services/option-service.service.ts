@@ -1,40 +1,56 @@
-import { Injectable, OnDestroy, OnInit } from '@angular/core';
-import { BehaviorSubject, Observable } from 'rxjs';
-import { Router } from '@angular/router';
+import { Injectable, OnDestroy } from '@angular/core';
 import { CoordinatorService } from './coordinator.service';
 import { StndMethodService } from './stnd-method.service';
+import { BehaviorSubject, Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
-export class OptionService implements OnDestroy, OnInit{
+export class OptionService implements OnDestroy{
+
+  private behaviorOptions: BehaviorSubject<string[]>;
+  public options$: Observable<string[]>;
 
   public static nextID = 0;
   list: Map<number, string[]> = new Map();
 
   constructor(private coordinator: CoordinatorService, private methodService: StndMethodService){
-    
-  }
-
-  ngOnInit(): void {
     const receivedText = localStorage.getItem("optionsList");
     if(receivedText){
-      console.log(receivedText);
       this.list = this.methodService.text2Map(receivedText);
     }
+
+    this.behaviorOptions = new BehaviorSubject<string[]>([]);
+    this.options$ = this.behaviorOptions.asObservable();
+
+    coordinator.textClear$.subscribe((isTrue)=>{
+      if(isTrue){
+        this.clear();
+      }
+    });
   }
 
-  ngOnDestroy(): void {
+  private clear(){
+    this.coordinator.curOpList_Index = -1;
+    this.behaviorOptions.next([]);
+    this.list.clear();
+  }
+
+  saveListInLocalStorage():void{
     const arr = [...this.list];
     const text = this.methodService.arr2String(arr);
     localStorage.setItem("optionsList", text);
   }
 
-  setCurrentOptions(index: number){
+  ngOnDestroy(): void {
+    this.saveListInLocalStorage();
+  }
+
+  renderSelectedOptions(index: number){
     this.coordinator.curOpList_Index = index;
     var temp = this.list.get(index)
     if(temp !== undefined){
-      this.coordinator.increaseOptions(temp);
+      this.behaviorOptions.next(temp);
     }
   }
 
@@ -48,6 +64,10 @@ export class OptionService implements OnDestroy, OnInit{
   }
 
   removeOptionList(index: number): boolean{
+    if(index === this.coordinator.curOpList_Index){
+      this.behaviorOptions.next([]);
+      this.coordinator.curOpList_Index = -1;
+    }
     return this.list.delete(index);
   }
 

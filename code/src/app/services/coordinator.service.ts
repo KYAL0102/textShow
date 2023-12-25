@@ -14,8 +14,6 @@ export class CoordinatorService implements OnInit{
   private storyText: string = "";
 
   public curOpList_Index = -1;
-  private behaviorOptions: BehaviorSubject<string[]>;
-  public options$: Observable<string[]>;
 
   private behaviorWasExecuted: BehaviorSubject<boolean>;
   public wasExecuted$: Observable<boolean>;
@@ -25,14 +23,8 @@ export class CoordinatorService implements OnInit{
   constructor(private router: Router, private methodService: StndMethodService) { 
     this.behaviorTextClear = new BehaviorSubject<boolean>(false);
     this.textClear$ = this.behaviorTextClear.asObservable();
-    this.behaviorOptions = new BehaviorSubject<string[]>([]);
-    this.options$ = this.behaviorOptions.asObservable();
     this.behaviorWasExecuted = new BehaviorSubject<boolean>(false);
     this.wasExecuted$ = this.behaviorWasExecuted.asObservable();
-  }
-
-  increaseOptions(input: string[]){
-    this.behaviorOptions.next(input);
   }
 
   ngOnInit(): void {
@@ -51,6 +43,7 @@ export class CoordinatorService implements OnInit{
     this.behaviorTextClear.next(value);
     localStorage.setItem("list", "");
     localStorage.setItem("text", "");
+    localStorage.setItem("optionsList", "");
   }
 
   execute(list: Map<number, string[]>){

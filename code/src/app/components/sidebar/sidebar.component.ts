@@ -11,6 +11,7 @@ export class SidebarComponent {
   constructor(private service: OptionService, private coordinator: CoordinatorService) {}
 
   execute() {
+    this.service.saveListInLocalStorage();
     this.coordinator.execute(this.service.list);
   }
 
