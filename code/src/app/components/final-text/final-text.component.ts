@@ -16,6 +16,11 @@ export class FinalTextComponent implements OnInit, OnDestroy{
   text: string = ""
 
   ngOnInit(): void {
+    const username = localStorage.getItem('user_id');
+    if(!username){
+      this.coordinator.navigateTo("login/");
+    }
+
     const receivedText = localStorage.getItem("finalText");
     if(receivedText) this.text = receivedText;
   }

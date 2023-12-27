@@ -1,0 +1,23 @@
+.centerContainer{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    width: 100vw;
+    background-color: var(--paleAqua);
+}
+
+#loginBox{
+    background-color: var(--darkCyan);
+    padding: 15px;
+    border-radius: 5px;
+}
+
+#loginBox label, input {
+    margin: 10px;
+    font-size: 1.3em;
+}
+
+#loginBox h2{
+    font-size: 1.5em;
+}

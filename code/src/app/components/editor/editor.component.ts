@@ -2,12 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import { CoordinatorService } from 'src/app/services/coordinator.service';
 
 @Component({
-  selector: 'app-home',
-  templateUrl: './home.component.html',
-  styleUrls: ['./home.component.css']
+  selector: 'app-editor',
+  templateUrl: './editor.component.html',
+  styleUrls: ['./editor.component.css']
 })
-export class HomeComponent implements OnInit{
-
+export class EditorComponent implements OnInit{
   constructor(private coordinator: CoordinatorService) {}
 
   ngOnInit(): void {
@@ -16,10 +15,4 @@ export class HomeComponent implements OnInit{
       this.coordinator.navigateTo("login/");
     }
   }
-
-  logOut() {
-    localStorage.removeItem('user_id');
-    this.coordinator.navigateTo("login/");
-  }
-
 }

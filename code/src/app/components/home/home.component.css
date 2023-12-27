@@ -1,37 +1,42 @@
 .grid-container{
     display: grid;
-    grid-template-columns: fit-content(50%) auto fit-content(50%);
-    grid-template-rows: 50% auto;
+    grid-template-columns: fit-content(50%) auto;
+    grid-template-rows: fit-content(50%) auto;
     height: 100vh;
+    width: 100vw;
 }
+/*
+.grid-container .item{
+    background-color:black;
+}*/
 
-.grid-item{
-    padding: 10px;
-    border-collapse: collapse;
-}
-
-#sidebar{
-
-    min-width: 2vw;
-    grid-column: 1;
-    grid-row: 1 /span 2;
-    background-color: #3AAFA9;
-}
-
-#textfield{
-    grid-column: 2;
-    grid-row: 1 /span 2;
-    max-height: 100vh;
-    overflow-y: auto;
-    background-color: var(--paleAqua);
-    color: var(--darkAqua);
-}
-
-#optionsEditor{
-    width: 30vw;
-    max-height: 50vh;
-    overflow: auto;
-    grid-column: 3;
+#item1{
+    grid-column: 1 /span 2;
     grid-row: 1;
-    background-color: var(--darkCyan);
+    background-color: var(--darkAqua);
+    display: flex;
+    justify-content: space-between;
+    padding: 0 10px;
+}
+
+#title{
+    color: var(--paleAqua);
+}
+
+.btnBox{
+    display: flex;
+    align-items: center;
+}
+
+#item2{
+    grid-column: 1;
+    grid-row: 2;
+    background-color: #b4dcd9;
+}
+
+#item3{
+    grid-column: 2;
+    grid-row: 2;
+    background-color: var(--paleAqua);
+    overflow-y: auto;
 }

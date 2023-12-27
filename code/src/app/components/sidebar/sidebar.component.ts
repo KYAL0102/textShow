@@ -8,11 +8,16 @@ import { OptionService } from 'src/app/services/option-service.service';
   styleUrls: ['./sidebar.component.css']
 })
 export class SidebarComponent {
+
   constructor(private service: OptionService, private coordinator: CoordinatorService) {}
 
   execute() {
     this.service.saveListInLocalStorage();
     this.coordinator.execute(this.service.list);
+  }
+
+  safeText() {
+    this.coordinator.safeText(this.service.list);
   }
 
   onBtnClicked(){

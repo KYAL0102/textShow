@@ -10,6 +10,12 @@ import { FormsModule } from '@angular/forms';
 import { OptionsEditorComponent } from './components/options-editor/options-editor.component';
 import { GameComponent } from './components/game/game.component';
 import { FinalTextComponent } from './components/final-text/final-text.component';
+import { HttpClientModule } from '@angular/common/http';
+import { LoginComponent } from './components/login/login.component';
+import { SignupComponent } from './components/signup/signup.component';
+import { EditorComponent } from './components/editor/editor.component';
+import { TextExplorerComponent } from './components/text-explorer/text-explorer.component';
+import { HomeSidebarComponent } from './components/home-sidebar/home-sidebar.component'
 
 @NgModule({
   declarations: [
@@ -19,12 +25,18 @@ import { FinalTextComponent } from './components/final-text/final-text.component
     HomeComponent,
     OptionsEditorComponent,
     GameComponent,
-    FinalTextComponent
+    FinalTextComponent,
+    LoginComponent,
+    SignupComponent,
+    EditorComponent,
+    TextExplorerComponent,
+    HomeSidebarComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    FormsModule
+    FormsModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

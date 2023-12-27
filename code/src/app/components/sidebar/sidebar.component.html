@@ -17,7 +17,11 @@
     <li id="line">
       <img src="assets/linie.png" />
     </li>
-    <li title="Safe your story">
+    <li
+      title="Safe your story"
+      (mousedown)="preventBlur($event)"
+      (click)="safeText()"
+    >
       <img src="assets/speichern.png" />
     </li>
     <li

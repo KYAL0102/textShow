@@ -1,0 +1,37 @@
+.grid-container{
+    display: grid;
+    grid-template-columns: fit-content(50%) auto fit-content(50%);
+    grid-template-rows: 50% auto;
+    height: 100vh;
+}
+
+.grid-item{
+    padding: 10px;
+    border-collapse: collapse;
+}
+
+#sidebar{
+
+    min-width: 2vw;
+    grid-column: 1;
+    grid-row: 1 /span 2;
+    background-color: #3AAFA9;
+}
+
+#textfield{
+    grid-column: 2;
+    grid-row: 1 /span 2;
+    max-height: 100vh;
+    overflow-y: auto;
+    background-color: var(--paleAqua);
+    color: var(--darkAqua);
+}
+
+#optionsEditor{
+    width: 30vw;
+    max-height: 50vh;
+    overflow: auto;
+    grid-column: 3;
+    grid-row: 1;
+    background-color: var(--darkCyan);
+}

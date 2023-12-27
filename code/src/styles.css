@@ -42,3 +42,18 @@ button:hover:not(.disabled-button){
     padding: 5px;
     background-color: darkred;
 }
+
+.link{
+    color: var(--midnightBlue);
+}
+.link:hover{
+    cursor: pointer;
+    text-decoration: underline;
+}
+.link:visited{
+    color: var(--deepTeal);
+}
+
+.errorMsg{
+    color: red;
+}

@@ -21,6 +21,11 @@ export class GameComponent implements OnInit{
   constructor(private methodService: StndMethodService, private coordinator: CoordinatorService) {}
 
   ngOnInit(): void {
+    const username = localStorage.getItem('user_id');
+    if(!username){
+      this.coordinator.navigateTo("login/");
+    }
+
     const text = localStorage.getItem("text");
     const list = localStorage.getItem("list");
     if(text && list){

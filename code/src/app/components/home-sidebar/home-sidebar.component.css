@@ -1,0 +1,17 @@
+.listBox{
+    width: 250px;
+    display: flex;
+    justify-content: center;
+    padding-top: 25px;
+}
+
+.btnBox button{
+    background-color: var(--paleAqua);
+    color: var(--deepTeal);
+    font-size: 1.1em;
+}
+
+.btnBox button:hover{
+    transition-duration: 0.5s;
+    background-color: #eafffe;
+}

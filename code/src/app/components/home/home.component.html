@@ -1,11 +1,14 @@
 <div class="grid-container">
-  <div class="grid-item" id="sidebar">
-    <app-sidebar></app-sidebar>
+  <div class="item" id="item1">
+    <h1 id="title">Story4Fun</h1>
+    <div class="btnBox">
+      <button (click)="logOut()" id="logOut-Btn">Log out</button>
+    </div>
   </div>
-  <div class="grid-item" id="textfield">
-    <app-textfield></app-textfield>
+  <div class="item" id="item2">
+    <app-home-sidebar></app-home-sidebar>
   </div>
-  <div class="grid-item" id="optionsEditor">
-    <app-options-editor></app-options-editor>
+  <div class="item" id="item3">
+    <app-text-explorer></app-text-explorer>
   </div>
 </div>
