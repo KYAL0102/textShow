@@ -1,7 +1,7 @@
 .grid-container{
     display: grid;
     grid-template-columns: fit-content(50%) auto fit-content(50%);
-    grid-template-rows: 50% auto;
+    grid-template-rows:  fit-content(50%) 50% auto;
     height: 100vh;
 }
 
@@ -11,16 +11,31 @@
 }
 
 #sidebar{
-
     min-width: 2vw;
     grid-column: 1;
-    grid-row: 1 /span 2;
+    grid-row: 1 /span 3;
     background-color: #3AAFA9;
+}
+
+#textTitle{
+    grid-column: 2;
+    grid-row: 1;
+    background-color: var(--midnightBlue);
+}
+
+#title{
+    background-color: rgba(255,255,255,0);
+    border: none;
+    outline: none;
+    color: var(--paleAqua);
+    height: 100%;
+    width: 100%;
+    font-size: 1.5em;
 }
 
 #textfield{
     grid-column: 2;
-    grid-row: 1 /span 2;
+    grid-row: 2 /span 2;
     max-height: 100vh;
     overflow-y: auto;
     background-color: var(--paleAqua);
@@ -32,6 +47,6 @@
     max-height: 50vh;
     overflow: auto;
     grid-column: 3;
-    grid-row: 1;
+    grid-row: 1 /span 2;
     background-color: var(--darkCyan);
 }

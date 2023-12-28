@@ -10,6 +10,8 @@ export class HomeSidebarComponent {
   constructor(private coordinator: CoordinatorService) {}
 
   toEditor() {
+    localStorage.removeItem('curItem');
+    this.coordinator.setTextClear(true);
     this.coordinator.navigateTo("/editor");
   }
 

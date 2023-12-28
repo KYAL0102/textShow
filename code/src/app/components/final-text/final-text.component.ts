@@ -26,6 +26,6 @@ export class FinalTextComponent implements OnInit, OnDestroy{
   }
 
   returnToHome() {
-    this.coordinator.navigateTo('/home');
+    this.coordinator.navigateTo('/editor');
   }
 }

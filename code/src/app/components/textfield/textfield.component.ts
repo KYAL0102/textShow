@@ -19,6 +19,7 @@ export class TextfieldComponent {
 
     if(this.text){
       const innerHtml = localStorage.getItem("textHtmlCode");
+      //console.log("reading from localstorage (textHtmlCode)...", innerHtml);
       if(innerHtml){
         this.text.nativeElement.innerHTML = innerHtml;
       }
@@ -29,6 +30,7 @@ export class TextfieldComponent {
       if(wasExecuted) { 
         const result: string = this.methodService.extractText(this.text?.nativeElement);
         localStorage.setItem("textHtmlCode", this.text?.nativeElement.innerHTML);
+        this.coordinator.setHtmlCode(this.text?.nativeElement.innerHTML);
         this.coordinator.setStoryText(result);
       }
     });

@@ -1,8 +1,8 @@
 <div class="grid-container">
-  <div *ngFor="let item of titles; let x = index">
-    <div class="folderBox">
+  <div *ngFor="let item of files; let x = index">
+    <div class="folderBox" (dblclick)="editText(item.id)">
       <img class="folderImg" src="assets/ordner.png" />
-      {{ item }}
+      {{ item.title }}
     </div>
   </div>
 </div>

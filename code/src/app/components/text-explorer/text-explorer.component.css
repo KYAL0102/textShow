@@ -9,8 +9,8 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    height: 90px;
-    width: 90px;
+    height: fit-content;
+    width: fit-content;
     padding: 10px;
     margin: 5px;
     border-radius: 10px;

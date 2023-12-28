@@ -16,6 +16,7 @@ export class OptionService implements OnDestroy{
 
   constructor(private coordinator: CoordinatorService, private methodService: StndMethodService){
     const receivedText = localStorage.getItem("optionsList");
+    //console.log("reading from localstorage (optionsList)...", receivedText);
     if(receivedText){
       this.list = this.methodService.text2Map(receivedText);
     }

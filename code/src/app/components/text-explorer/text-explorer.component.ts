@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { CoordinatorService } from 'src/app/services/coordinator.service';
 import { Item, UserManagerService } from 'src/app/services/user-manager.service';
 
 @Component({
@@ -7,20 +8,22 @@ import { Item, UserManagerService } from 'src/app/services/user-manager.service'
   styleUrls: ['./text-explorer.component.css']
 })
 export class TextExplorerComponent {
-  titles: string[];
+
   files: Item[];
 
-  constructor(private userManager: UserManagerService) {
-    this.titles = [];
+  constructor(private userManager: UserManagerService, private coordinator: CoordinatorService) {
     this.files = [];
     const list = userManager.get_items_of_current();
     if(list){
       list.subscribe({
         next: (response) => {
           this.files = response;
-          this.titles = response.map(obj => obj.title);;
         }
       });
     }
+  }
+
+  editText(id: number) {
+    this.coordinator.prepareData(id);
   }
 }

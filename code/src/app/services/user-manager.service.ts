@@ -41,9 +41,23 @@ export class UserManagerService {
       { "title": item.title, "text": item.text, "compressedList": item.compressedList}
       ) as Observable<Response>;
   }
+
+  update_item(item: Item): Observable<Item> | null{
+    const user_id = localStorage.getItem('user_id');
+    if(!user_id){
+      return null;
+    }
+    const id = Number.parseInt(user_id);
+
+    return this.httpClient.patch(
+      `${this.API_URL}/users/${id}/items/${item.id}`,
+      { "title": item.title, "text": item.text, "compressedList": item.compressedList }
+    ) as Observable<Item>;
+  }
 }
 
 export interface Item{
+  id: number,
   title: string,
   text: string,
   compressedList: string
