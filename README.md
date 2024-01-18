@@ -12,3 +12,10 @@ For the development I used two mayor technologies.<br/>
 
 - **Angular** (Typescript) for the Frontend
 - **FastAPI** (Python) for the Backend <br/>
+
+## Documentation
+How to start the website in **developer mode**:
+
+_Angular_ `ng serve`
+
+_FastAPI_ `uvicorn sql_app.main:app --reload`
